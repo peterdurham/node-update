@@ -18,7 +18,7 @@
 header {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+
   padding-bottom: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -29,6 +29,18 @@ header {
   width: 84px;
   height: 84px;
 }
+section {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 18px;
+}
+h2 {
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+h4 {
+  display: inline-block;
+  margin-right: 4px;
+}
 .container {
   width: 50%;
   background: rgba(0, 0, 0, 0.1);
@@ -36,15 +48,41 @@ header {
   margin: 30px auto;
   position: relative;
 }
-
-.grid {
-  width: 840px;
-  height: 640px;
-  display: grid;
-  grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-rows: 50% 50%;
+.stat {
 }
-
+.three-wide {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+}
+.three-wide .stat {
+  width: 33.33%;
+}
+.two-wide {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+}
+.two-wide .stat {
+  width: 50%;
+}
+.section-1 {
+  height: 54px;
+}
+.section-2 {
+  height: 72px;
+}
+.section-3 {
+  height: 54px;
+}
+.section-4 {
+  height: 54px;
+}
+.section-5 {
+  height: 54px;
+}
 .data {
   width: 100%;
   height: 100%;
