@@ -6,6 +6,12 @@ import TenDayChart from "../components/tenDayChart"
 import "../components/styles.css"
 import BitcoinLogo from "../images/bitcoin-logo.png"
 
+import { GrCube } from "react-icons/gr"
+import { FaNetworkWired } from "react-icons/fa"
+import { GiWoodAxe } from "react-icons/gi"
+import { BsLightning } from "react-icons/bs"
+import { AiOutlineFieldTime } from "react-icons/ai"
+
 const IndexPage = () => {
   const [currentData, setCurrentData] = useState([])
   const [dailyData, setDailyData] = useState([])
@@ -97,7 +103,10 @@ const IndexPage = () => {
           </header>
 
           <section>
-            <h2>Last Block</h2>
+            <h2>
+              Last Block
+              <GrCube />
+            </h2>
             <div className="two-wide section-1">
               <div className="stat">
                 <h4>Height:</h4>
@@ -140,7 +149,9 @@ const IndexPage = () => {
             </div>
           </section>
           <section>
-            <h2>Last 24 Hours</h2>
+            <h2>
+              Last 24 Hours <AiOutlineFieldTime />
+            </h2>
             <div className="two-wide section-2">
               <div className="stat">
                 <h4>Number of Blocks:</h4>
@@ -191,7 +202,10 @@ const IndexPage = () => {
           </section>
           <section>
             {" "}
-            <h2>Network</h2>
+            <h2>
+              Network
+              <FaNetworkWired />
+            </h2>
             <div className="two-wide section-3">
               {" "}
               <div className="stat">
@@ -228,44 +242,50 @@ const IndexPage = () => {
               </div>
             </div>
           </section>
-          <section>
-            {" "}
-            <h2>Next Halvening</h2>
-            <div className="three-wide section-4">
+          <section className="double-section">
+            <div className="double-section-left">
               {" "}
-              <div className="stat">
-                <h4>Blocks Remaining: </h4>
-                <span>{format(840000 - currentData.bestBlockHeight)}</span>
-              </div>
-              <div className="stat">
-                <h4>Days Remaining: </h4>
-                <span>
-                  {((840000 - currentData.bestBlockHeight) / 144).toFixed(2)}
-                </span>
-              </div>
-              <div className="stat">
-                <h4>Coins Remaining: </h4>
-                <span>
-                  {format((840000 - currentData.bestBlockHeight) * 6.25)}
-                </span>
+              <h2>
+                Next Halvening <GiWoodAxe />
+              </h2>
+              <div className="three-wide section-4">
+                {" "}
+                <div className="stat">
+                  <h4>Blocks Remaining: </h4>
+                  <span>{format(840000 - currentData.bestBlockHeight)}</span>
+                </div>
+                <div className="stat">
+                  <h4>Days Remaining: </h4>
+                  <span>
+                    {((840000 - currentData.bestBlockHeight) / 144).toFixed(2)}
+                  </span>
+                </div>
+                <div className="stat">
+                  <h4>Coins Remaining: </h4>
+                  <span>
+                    {format((840000 - currentData.bestBlockHeight) * 6.25)}
+                  </span>
+                </div>
               </div>
             </div>
-          </section>
-          <section>
-            {" "}
-            <h2>Lightning (Public)</h2>
-            <div className="three-wide section-5">
-              <div className="stat">
-                <h4>Channel Count: </h4>
-                <span>{format(currentData.lightningChannels)}</span>
-              </div>
-              <div className="stat">
-                <h4>Node Count: </h4>
-                <span>{format(currentData.lightningNodes)}</span>
-              </div>
-              <div className="stat">
-                <h4>Capacity: </h4>
-                <span>{format(currentData.lightningCapacity)} BTC</span>
+            <div className="double-section-right">
+              {" "}
+              <h2>
+                Lightning (Public) <BsLightning />
+              </h2>
+              <div className="three-wide section-5">
+                <div className="stat">
+                  <h4>Channel Count: </h4>
+                  <span>{format(currentData.lightningChannels)}</span>
+                </div>
+                <div className="stat">
+                  <h4>Node Count: </h4>
+                  <span>{format(currentData.lightningNodes)}</span>
+                </div>
+                <div className="stat">
+                  <h4>Capacity: </h4>
+                  <span>{format(currentData.lightningCapacity)} BTC</span>
+                </div>
               </div>
             </div>
           </section>
