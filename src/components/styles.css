@@ -14,12 +14,15 @@
   background: #fff;
   padding: 24px;
 }
+
 header {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-header h1 {
+.header-label {
   margin-left: 24px;
 }
 .site-logo {
@@ -38,7 +41,7 @@ header h1 {
   width: 840px;
   height: 640px;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 33.33% 33.33% 33.33%;
   grid-template-rows: 50% 50%;
 }
 
