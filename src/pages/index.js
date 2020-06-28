@@ -4,6 +4,7 @@ import axios from "axios"
 
 import TenDayChart from "../components/tenDayChart"
 import "../components/styles.css"
+import BitcoinLogo from "../images/bitcoin-logo.png"
 
 const IndexPage = () => {
   const [currentData, setCurrentData] = useState([])
@@ -83,145 +84,166 @@ const IndexPage = () => {
       .map(data => data.transactionsLastDay)
 
     return (
-      <div className="App">
+      <div className="app">
         <SEO title="Home" />
-        <div>
-          <h2>Last Block Info</h2>
-          <div>{format(currentData.bestBlockHeight)}</div>
-          <div>
-            {new Date(currentData.lastBlockInfo.time * 1000).toLocaleString()}
-          </div>
-          <div>
-            {Math.floor(timeSinceBlock)}:
-            {("0" + Math.floor((timeSinceBlock % 1) * 60)).slice(-2)} since last
-            block
-          </div>
-          <div>Size: </div>
-          <div>{format(currentData.lastBlockInfo.tx)} txns </div>
-          <div>
-            {(currentData.lastBlockInfo.size / 1000000).toFixed(2)} mb (size)
-          </div>
-          <div>
-            {(currentData.lastBlockInfo.weight / 1000000).toFixed(2)} mb
-            (weight)
-          </div>
+        <div className="app-container">
+          <header>
+            <img src={BitcoinLogo} alt="bitcoin logo" className="site-logo" />
+            <h1>Bitcoin Core Statistics</h1>
+          </header>
 
-          <div className="hover-stat">
-            <h2>Mempool Size</h2>
-            <div>{format(currentData.mempoolSize)} txns</div>
-            {/* <TenDayChart
+          <div className="grid">
+            <div className="grid-item">
+              {" "}
+              <h2>Last Block Info</h2>
+              <div>{format(currentData.bestBlockHeight)}</div>
+              <div>
+                {new Date(
+                  currentData.lastBlockInfo.time * 1000
+                ).toLocaleString()}
+              </div>
+              <div>
+                {Math.floor(timeSinceBlock)}:
+                {("0" + Math.floor((timeSinceBlock % 1) * 60)).slice(-2)} since
+                last block
+              </div>
+              <h2>Size: </h2>
+              <div>{format(currentData.lastBlockInfo.tx)} txns </div>
+              <div>
+                {(currentData.lastBlockInfo.size / 1000000).toFixed(2)} mb
+                (size)
+              </div>
+              <div>
+                {(currentData.lastBlockInfo.weight / 1000000).toFixed(2)} mb
+                (weight)
+              </div>
+            </div>
+            <div className="grid-item">
+              <div className="hover-stat">
+                <h2>Mempool Size</h2>
+                <div>{format(currentData.mempoolSize)} txns</div>
+                {/* <TenDayChart
               title="Mempool Size"
               data={lastTenMempools}
               label="txns"
             /> */}
-          </div>
+              </div>
 
-          <div className="hover-stat">
-            <h2># Bitcoin Nodes</h2>
-            <div>{format(currentData.bitcoinNodes)} nodes</div>
-            {/* <TenDayChart
-              title="Listening Bitcoin Nodes"
-              data={lastTenNodeCounts}
-              label="nodes"
-            /> */}
-          </div>
+              <h2># of Bitcoins</h2>
+              <div>
+                {format(
+                  (currentData.bestBlockHeight - accurateHeight) * 12.5 +
+                    accurateBitcoins
+                )}{" "}
+                BTC
+              </div>
 
-          <h2># of Bitcoins</h2>
-          <div>
-            {format(
-              (currentData.bestBlockHeight - accurateHeight) * 12.5 +
-                accurateBitcoins
-            )}{" "}
-            BTC
-          </div>
-          <div>Reward Era #4 (6.25 BTC / block)</div>
+              <h2>Halvening</h2>
+              <div>
+                <strong>{format(840000 - currentData.bestBlockHeight)}</strong>{" "}
+                blocks until halvening
+              </div>
+              <div>
+                <strong>
+                  {((840000 - currentData.bestBlockHeight) / 144).toFixed(2)}
+                </strong>{" "}
+                days until halvening
+              </div>
+              <div>
+                <strong>
+                  {format((840000 - currentData.bestBlockHeight) * 6.25)}
+                </strong>{" "}
+                6.25/block BTC remaining
+              </div>
 
-          <h2># of Blocks (24hr)</h2>
-          <div> {currentData.blocksLastDay} blocks</div>
-          <div>
-            {" "}
-            <strong>
-              {((144 / currentData.blocksLastDay) * 10).toFixed(2)}
-            </strong>{" "}
-            minutes (avg block interval)
-          </div>
+              <h2> Networks Hashrate</h2>
+              <div>
+                {" "}
+                <strong>
+                  {(currentData.networkHashrate / 1000000000000000000).toFixed(
+                    4
+                  )}
+                </strong>{" "}
+                EH/s
+              </div>
+              <div>
+                <strong>
+                  {(currentData.difficulty / 1000000000000).toFixed(4)}
+                </strong>{" "}
+                trillion (Mining Difficulty)
+              </div>
+            </div>
+            <div className="grid-item">
+              <h2># of Blocks (24hr)</h2>
+              <div> {currentData.blocksLastDay} blocks</div>
+              <div>
+                {" "}
+                <strong>
+                  {((144 / currentData.blocksLastDay) * 10).toFixed(2)}
+                </strong>{" "}
+                minutes (avg block interval)
+              </div>
 
-          <div className="hover-stat">
-            <h2># of Transactions (24hr)</h2>
-            <div> {format(currentData.transactionsLastDay)} txns</div>
-            {/* <TenDayChart
+              <div className="hover-stat">
+                <h2># of Transactions (24hr)</h2>
+                <div> {format(currentData.transactionsLastDay)} txns</div>
+                {/* <TenDayChart
               title="24hr # of Transactions"
               data={lastTenDailyTransactions}
               label="txns"
             /> */}
-          </div>
+              </div>
 
-          <div>
-            <strong>
-              {(
-                currentData.blockSizeLastDay / currentData.transactionsLastDay
-              ).toFixed(2)}
-            </strong>{" "}
-            bytes (avg size)
-          </div>
+              <div>
+                <strong>
+                  {(
+                    currentData.blockSizeLastDay /
+                    currentData.transactionsLastDay
+                  ).toFixed(2)}
+                </strong>{" "}
+                bytes (avg size)
+              </div>
 
-          <h2>Block Space Added (24hr)</h2>
-          <div> {(currentData.blockSizeLastDay / 1000000).toFixed(2)} MB</div>
-          <div>
-            <strong>
-              {(
-                currentData.blockSizeLastDay /
-                currentData.blocksLastDay /
-                1000000
-              ).toFixed(2)}
-            </strong>{" "}
-            mb (avg block size)
-          </div>
+              <h2>Block Space Added (24hr)</h2>
+              <div>
+                {" "}
+                {(currentData.blockSizeLastDay / 1000000).toFixed(2)} MB
+              </div>
+              <div>
+                <strong>
+                  {(
+                    currentData.blockSizeLastDay /
+                    currentData.blocksLastDay /
+                    1000000
+                  ).toFixed(2)}
+                </strong>{" "}
+                mb (avg block size)
+              </div>
 
-          <h4>Block Reward (24hr)</h4>
-          <h2>
-            {" "}
-            <strong>{currentData.blocksLastDay * 6.25}</strong> BTC
-          </h2>
-
-          <h2>Halvening</h2>
-          <div>
-            <strong>{format(840000 - currentData.bestBlockHeight)}</strong>{" "}
-            blocks until halvening
+              <h4>Block Reward (24hr)</h4>
+              <h2>
+                {" "}
+                <strong>{currentData.blocksLastDay * 6.25}</strong> BTC
+              </h2>
+            </div>
+            <div className="grid-item">
+              {" "}
+              <h2>Nodes</h2>
+              <div className="hover-stat">
+                <h2># Bitcoin Nodes</h2>
+                <div>{format(currentData.bitcoinNodes)} nodes</div>
+                {/* <TenDayChart
+              title="Listening Bitcoin Nodes"
+              data={lastTenNodeCounts}
+              label="nodes"
+            /> */}
+              </div>
+              <h2>Lightning Info (Public)</h2>
+              <div>{format(currentData.lightningChannels)} channels</div>
+              <div>{format(currentData.lightningNodes)} nodes</div>
+              <div> {format(currentData.lightningCapacity)} BTC (Capacity)</div>
+            </div>
           </div>
-          <div>
-            <strong>
-              {((840000 - currentData.bestBlockHeight) / 144).toFixed(2)}
-            </strong>{" "}
-            days until halvening
-          </div>
-          <div>
-            <strong>
-              {format((840000 - currentData.bestBlockHeight) * 6.25)}
-            </strong>{" "}
-            6.25/block BTC remaining
-          </div>
-
-          <h2> Networks Hashrate</h2>
-          <div>
-            {" "}
-            <strong>
-              {(currentData.networkHashrate / 1000000000000000000).toFixed(4)}
-            </strong>{" "}
-            EH/s
-          </div>
-          <div>
-            <strong>
-              {(currentData.difficulty / 1000000000000).toFixed(4)}
-            </strong>{" "}
-            trillion (Mining Difficulty)
-          </div>
-
-          <h2>Lightning Info (Public)</h2>
-
-          <div>{format(currentData.lightningChannels)} channels</div>
-          <div>{format(currentData.lightningNodes)} nodes</div>
-          <div> {format(currentData.lightningCapacity)} BTC (Capacity)</div>
         </div>
       </div>
     )
