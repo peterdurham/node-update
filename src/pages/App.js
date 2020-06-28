@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
-import SEO from "../components/seo"
 import axios from "axios"
 
-const IndexPage = () => {
+const App = () => {
   const [currentData, setCurrentData] = useState([])
   const [dailyData, setDailyData] = useState([])
   const [error, setError] = useState(null)
@@ -70,8 +69,7 @@ const IndexPage = () => {
 
     console.log(dailyData)
     return (
-      <div className="App">
-        <SEO title="Home" />
+      <div>
         <h2>Last Block Info</h2>
         <div>{format(currentData.bestBlockHeight)}</div>
         <div>
@@ -187,4 +185,4 @@ const IndexPage = () => {
     )
   }
 }
-export default IndexPage
+export default App
