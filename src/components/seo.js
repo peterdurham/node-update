@@ -21,9 +21,7 @@ function SEO({ description, meta, title }) {
     `
   )
 
-  const metaDescription =
-    `Bitcoin core statistics served 24/7 from a pruned node running on Digital Ocean.` |
-    site.siteMetadata.description
+  const metaDescription = `Bitcoin core statistics served 24/7 from a pruned node running on Digital Ocean.`
   const metaImage = `https://nodeupdate.com${logo.publicURL}`
   const metaTitle = "Node Update"
   const metaAuthor = `@UpdateNode`
