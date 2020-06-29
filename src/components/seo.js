@@ -15,7 +15,7 @@ function SEO({ description, lang, meta, title }) {
             author
           }
         }
-        logo: file(absolutePath: { regex: "/rocketimage.jpg/" }) {
+        logo: file(absolutePath: { regex: "/ogimage.png/" }) {
           childImageSharp {
             fluid(maxWidth: 400) {
               ...GatsbyImageSharpFluid
