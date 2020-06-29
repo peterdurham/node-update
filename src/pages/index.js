@@ -3,9 +3,9 @@ import SEO from "../components/seo"
 import axios from "axios"
 
 import Layout from "../components/layout"
-import TenDayChart from "../components/tenDayChart"
+
 import "../components/styles.css"
-import BitcoinLogo from "../images/bitcoin-logo.png"
+
 import { GrCube } from "react-icons/gr"
 import { FaNetworkWired } from "react-icons/fa"
 import { GiWoodAxe } from "react-icons/gi"
@@ -94,8 +94,7 @@ const IndexPage = () => {
     console.log(currentData)
     return (
       <Layout>
-        <SEO title="Home" />
-
+        <SEO title="Node Update" />
         <section>
           <h2>
             Last Block
