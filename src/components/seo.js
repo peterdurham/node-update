@@ -22,7 +22,8 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = site.siteMetadata.description
-  const OGImage = `https://nodeupdate.com${logo.publicURL}`
+  const metaImage = `https://nodeupdate.com${logo.publicURL}`
+  const metaTitle = title | "Node Update"
 
   return (
     <Helmet
@@ -38,7 +39,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `og:description`,
@@ -46,7 +47,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: OGImage,
+          content: metaImage,
         },
         {
           property: `og:type`,
