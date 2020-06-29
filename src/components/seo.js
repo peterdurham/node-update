@@ -23,7 +23,7 @@ function SEO({ description, lang, meta, title }) {
 
   const metaDescription = site.siteMetadata.description
   const metaImage = `https://nodeupdate.com${logo.publicURL}`
-  const metaTitle = title | "Node Update"
+  const metaTitle = "Node Update"
 
   return (
     <Helmet

@@ -93,7 +93,7 @@ const IndexPage = () => {
 
     return (
       <Layout>
-        <SEO title="Node Update" />
+        <SEO />
         <section>
           <h2>
             Last Block
