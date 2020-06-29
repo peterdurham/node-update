@@ -47,10 +47,10 @@ function SEO({ description, meta, title }) {
           property: `og:description`,
           content: metaDescription,
         },
-        {
-          property: `og:image`,
-          content: metaImage,
-        },
+        // {
+        //   property: `og:image`,
+        //   content: metaImage,
+        // },
         {
           property: `og:type`,
           content: `website`,
