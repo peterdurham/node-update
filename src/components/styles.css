@@ -22,6 +22,7 @@ body {
   box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.1);
   min-height: 778px;
 }
+
 a {
   text-decoration: none;
   color: #383838;
@@ -59,6 +60,7 @@ header {
   padding-bottom: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .header-left {
   display: flex;
   align-items: center;
@@ -77,6 +79,7 @@ header {
   transform: translateY(4px);
   font-size: 20px;
 }
+
 .site-logo {
   width: 84px;
   height: 84px;
@@ -106,6 +109,7 @@ h4 {
 .stat {
   height: 24px;
 }
+
 section:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 18px;
@@ -129,6 +133,17 @@ section h2 svg {
   max-height: 72px;
 }
 
+@media (max-width: 840px) {
+  .two-wide .stat {
+    width: 100%;
+  }
+  .section-1,
+  .section-2,
+  .section-3 {
+    min-height: 120px;
+    max-height: 240px;
+  }
+}
 .double-section {
   display: flex;
   width: 100%;
@@ -196,4 +211,37 @@ section h2 svg {
 }
 .hover-stat:hover .hover-chart {
   display: inline-block;
+}
+
+@media (max-width: 840px) {
+  .app-container {
+    width: 92%;
+    margin: 0 4%;
+    margin-bottom: 120px;
+  }
+  .app {
+    padding-top: 20px;
+  }
+  header {
+    flex-direction: column;
+  }
+
+  .header-right {
+    margin-top: 20px;
+  }
+  .double-section {
+    flex-direction: column;
+  }
+  .section-4,
+  .section-5 {
+    min-height: 90px;
+    max-height: 240px;
+  }
+  .double-section-left,
+  .double-section-right {
+    width: 100%;
+  }
+  .double-section-left {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
