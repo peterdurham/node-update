@@ -91,7 +91,6 @@ const IndexPage = () => {
       .filter((data, index, array) => index > array.length - 11)
       .map(data => data.transactionsLastDay)
 
-    console.log(currentData)
     return (
       <Layout>
         <SEO title="Node Update" />

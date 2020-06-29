@@ -2,10 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import OGPath from "../images/ogimage.png"
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, logo } = useStaticQuery(
     graphql`
       query {
         site {
@@ -16,18 +15,15 @@ function SEO({ description, lang, meta, title }) {
           }
         }
         logo: file(absolutePath: { regex: "/ogimage.png/" }) {
-          childImageSharp {
-            fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+          publicURL
         }
       }
     `
   )
 
   const metaDescription = site.siteMetadata.description
-  const OGImage = `https://nodeupdate.com${logo.childImageSharp.fluid.src}`
+  const OGImage = `https://nodeupdate.com${logo.publicURL}`
+
   return (
     <Helmet
       htmlAttributes={{
