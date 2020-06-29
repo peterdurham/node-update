@@ -9,7 +9,7 @@ function AboutPage() {
 
       <p>
         Node Update is a statistics site for Bitcoin Core Information. RPC call
-        to update node stats occurs once every minute.
+        occurs once every minute to update node stats.
       </p>
       <p>
         This website is connected to a pruned node hosted on Digital Ocean for
@@ -25,8 +25,8 @@ function AboutPage() {
 
       <p>
         Pruned nodes are unable to look up individual transactions unless they
-        are keys stored on the node. All stats on this site can be looked up by
-        running a pruned node of your own (minimum 550mb).
+        are to or from a wallet on the node. All stats on this site can be
+        looked up by running a pruned node of your own (minimum 550mb).
       </p>
 
       <p>Enjoy!</p>
