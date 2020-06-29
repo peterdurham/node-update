@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Node Update`,
-    description: `Bitcoin core statistics 24/7 from a pruned node running on Digital Ocean.`,
+    description: `Bitcoin core statistics served 24/7 from a pruned node running on Digital Ocean.`,
     author: `@peterjdurham`,
   },
   plugins: [
@@ -21,10 +21,10 @@ module.exports = {
         name: `node-update`,
         short_name: `nodeupdate`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#fff`,
+        theme_color: `#F7931A`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
