@@ -1,9 +1,12 @@
 import React from "react"
 import Layout from "../components/layout"
+import Wizard from "../images/wizard.jpg"
+
 function AboutPage() {
   return (
     <Layout>
       <h2>About</h2>
+
       <p>
         Node Update is a statistics site for Bitcoin Core Information. RPC call
         to update node stats occurs once every minute.
@@ -29,9 +32,11 @@ function AboutPage() {
       <p>Enjoy!</p>
       <br />
       <br />
+      <img className="wizard-image" src={Wizard} />
       <p>
+        Follow on
         <a href="https://twitter.com/UpdateNode" className="twitter-link">
-          <strong>Twitter</strong>
+          <strong> Twitter</strong>
         </a>{" "}
       </p>
     </Layout>

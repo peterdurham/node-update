@@ -47,7 +47,11 @@ ul {
 .mb-60 {
   margin-bottom: 60px;
 }
-
+.wizard-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
 header {
   display: flex;
   align-items: center;
