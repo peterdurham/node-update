@@ -26,7 +26,7 @@ function SEO({ description, lang, meta, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = site.siteMetadata.description
   const OGImage = `https://nodeupdate.com${logo.childImageSharp.fluid.src}`
   return (
     <Helmet
