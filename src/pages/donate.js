@@ -17,7 +17,7 @@ function DonatePage() {
       </p>
       <p className="mb-60">Thank you for your support!</p>
       <p>3Me95ofcb6Rg7udC8UZFAJhvtngwUye5x2</p>
-      <img src={QRImage} />
+      <img src={QRImage} alt="qr code" />
     </Layout>
   )
 }
