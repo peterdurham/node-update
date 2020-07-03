@@ -27,7 +27,9 @@ const IndexPage = () => {
           "https://node.nodeupdate.com/nodeinfo/currentdata"
         )
         setCurrentData(currentResponse.data[0])
-        setIsLoaded(true)
+        setTimeout(() => {
+          setIsLoaded(true)
+        }, 700)
       } catch (e) {
         setError(error)
         setIsLoaded(true)
@@ -41,10 +43,10 @@ const IndexPage = () => {
           "https://node.nodeupdate.com/nodeinfo/dailydata"
         )
         setDailyData(dailyResponse.data)
-        setIsLoaded(true)
+        // setIsLoaded(true)
       } catch (e) {
         setError(error)
-        setIsLoaded(true)
+        // setIsLoaded(true)
       }
     }
     fetchDailyData()
@@ -64,7 +66,7 @@ const IndexPage = () => {
   }
 
   if (error) return <div>Error: {error.message}</div>
-  if (!isLoaded) return <div>...loading</div>
+  if (!isLoaded) return <div className="loader">Loading...</div>
   else {
     const date = new Date()
     const time = date.getTime() / 1000
