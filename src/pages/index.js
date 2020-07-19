@@ -10,7 +10,7 @@ import { GrCube } from "react-icons/gr"
 import { FaNetworkWired } from "react-icons/fa"
 import { GiWoodAxe } from "react-icons/gi"
 import { BsLightning } from "react-icons/bs"
-import { AiOutlineFieldTime } from "react-icons/ai"
+import { TiTime } from "react-icons/ti"
 
 import { IoLogoTwitter, IoLogoBitcoin } from "react-icons/io"
 
@@ -29,7 +29,7 @@ const IndexPage = () => {
         setCurrentData(currentResponse.data[0])
         setTimeout(() => {
           setIsLoaded(true)
-        }, 700)
+        }, 400)
       } catch (e) {
         setError(error)
         setIsLoaded(true)
@@ -144,7 +144,7 @@ const IndexPage = () => {
         </section>
         <section>
           <h2>
-            Last 24 Hours <AiOutlineFieldTime />
+            Last 24 Hours <TiTime />
           </h2>
           <div className="two-wide section-2">
             <div className="stat">
