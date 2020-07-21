@@ -201,37 +201,39 @@ function ChartsPage() {
 
     return (
       <Layout>
+        <h2>Mempool Size (Txns)</h2>
+        <StatsChart data={mempoolSize} />
+        <h2>Network Hashrate (EH/s)</h2>
+        <StatsChart data={networkHashrate} />
         <h2>Blocks Mined (24h)</h2>
         <StatsChart data={numBlocks} />
-        <h2>Avg Block Interval (24h)</h2>
+        <h2>Average Block Interval (24h)</h2>
         <StatsChart data={avgBlockIntervalData} />
         <h2>Bitcoin Nodes</h2>
         <StatsChart data={numberOfNodes} />
-        <h2>Mempool Size</h2>
-        <StatsChart data={mempoolSize} />
+
         <h2>Transactions (24h)</h2>
         <StatsChart data={txLastDay} />
-        <h2>Avg Transaction Size 24h (bytes)</h2>
+        <h2>Avg Tx Size (bytes)</h2>
         <StatsChart data={avgTxSizeData} />
-        <h2>Block Space added 24h (MB)</h2>
+        <h2>Block Space Added (MB)</h2>
         <StatsChart data={blockSpaceAddedData} />
-        <h2>Average Block Size (MB)</h2>
+        <h2>Avg Block Size (MB)</h2>
         <StatsChart data={avgBlockSizeData} />
-        <h2>New Bitcoin Mined</h2>
+        <h2>New Bitcoin Mined (24h)</h2>
         <StatsChart data={newBitcoinMinedData} />
-        <h2>Network Hashrate (EH/s)</h2>
-        <StatsChart data={networkHashrate} />
-        <h2>Network Difficulty (trillion)</h2>
+
+        <h2>Mining Difficulty (in trillions)</h2>
         <StatsChart data={networkDifficultyData} />
         <h2>Total Bitcoin in circulation</h2>
         <StatsChart data={totalBitcoinData} />
-        <h2>Current Block</h2>
+        <h2>Current Block Height</h2>
         <StatsChart data={bestBlockHeightData} />
-        <h2>Lightning Channels</h2>
+        <h2>Lightning Channels (Public)</h2>
         <StatsChart data={lightningChannelData} />
-        <h2>Lightning Nodes</h2>
+        <h2>Lightning Nodes (Public)</h2>
         <StatsChart data={lightningNodeData} />
-        <h2>Lightning Capacity</h2>
+        <h2>Lightning Capacity (Public)</h2>
         <StatsChart data={lightningCapacityData} />
       </Layout>
     )
