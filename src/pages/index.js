@@ -65,8 +65,13 @@ const IndexPage = () => {
     return hours + ":" + minutes + ":" + seconds
   }
 
-  if (error) return <div>Error: {error.message}</div>
-  if (!isLoaded) return <div className="loader">Loading...</div>
+  if (error) return <Layout>Error: {error.message}</Layout>
+  if (!isLoaded)
+    return (
+      <Layout>
+        <div className="loader"></div>
+      </Layout>
+    )
   else {
     const date = new Date()
     const time = date.getTime() / 1000
