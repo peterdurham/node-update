@@ -5,7 +5,7 @@ import QRImage from "../images/qr.png"
 function DonatePage() {
   return (
     <Layout>
-      <h2>Donate / Support</h2>
+      <h2>Donate</h2>
       <p>
         Node Update is a pruned bitcoin node application hosted on a $10/month
         Digital Ocean server.

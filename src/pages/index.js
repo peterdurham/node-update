@@ -3,7 +3,6 @@ import SEO from "../components/seo"
 import axios from "axios"
 
 import Layout from "../components/layout"
-
 import "../components/styles.css"
 
 import { GrCube } from "react-icons/gr"
@@ -12,11 +11,8 @@ import { GiWoodAxe } from "react-icons/gi"
 import { BsLightning } from "react-icons/bs"
 import { TiTime } from "react-icons/ti"
 
-import { IoLogoTwitter, IoLogoBitcoin } from "react-icons/io"
-
 const IndexPage = () => {
   const [currentData, setCurrentData] = useState([])
-  const [dailyData, setDailyData] = useState([])
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -29,6 +25,7 @@ const IndexPage = () => {
         setCurrentData(currentResponse.data[0])
         setTimeout(() => {
           setIsLoaded(true)
+          console.log(`Hello ✌(ツ)`)
         }, 400)
       } catch (e) {
         setError(error)
@@ -36,20 +33,6 @@ const IndexPage = () => {
       }
     }
     fetchCurrentData()
-
-    const fetchDailyData = async () => {
-      try {
-        const dailyResponse = await axios.get(
-          "https://node.nodeupdate.com/nodeinfo/dailydata"
-        )
-        setDailyData(dailyResponse.data)
-        // setIsLoaded(true)
-      } catch (e) {
-        setError(error)
-        // setIsLoaded(true)
-      }
-    }
-    fetchDailyData()
   }, [error])
 
   const format = num => {
@@ -85,18 +68,6 @@ const IndexPage = () => {
     ).toFixed(2)
     let accurateHeight = 636756
     let accurateBitcoins = 18417196
-
-    const lastTenMempools = dailyData
-      .filter((data, index, array) => index > array.length - 11)
-      .map(data => data.mempoolSize)
-
-    const lastTenNodeCounts = dailyData
-      .filter((data, index, array) => index > array.length - 11)
-      .map(data => data.bitcoinNodes)
-
-    const lastTenDailyTransactions = dailyData
-      .filter((data, index, array) => index > array.length - 11)
-      .map(data => data.transactionsLastDay)
 
     return (
       <Layout>
@@ -176,10 +147,8 @@ const IndexPage = () => {
               </span>
             </div>
             <div className="stat">
-              <h4>Block Space Added:</h4>
-              <span>
-                {(currentData.blockSizeLastDay / 1000000).toFixed(2)} MB
-              </span>
+              <h4>Block Reward:</h4>
+              <span>{currentData.blocksLastDay * 6.25} BTC</span>
             </div>
             <div className="stat">
               <h4>Avg Block Size:</h4>
@@ -193,8 +162,10 @@ const IndexPage = () => {
               </span>
             </div>
             <div className="stat">
-              <h4>Block Reward:</h4>
-              <span>{currentData.blocksLastDay * 6.25} BTC</span>
+              <h4>Block Space Added:</h4>
+              <span>
+                {(currentData.blockSizeLastDay / 1000000).toFixed(2)} MB
+              </span>
             </div>
           </div>
         </section>
@@ -208,12 +179,9 @@ const IndexPage = () => {
             {" "}
             <div className="stat">
               <h4>Mempool Size:</h4>
+
               <span>{format(currentData.mempoolSize)} txns</span>
             </div>{" "}
-            <div className="stat">
-              <h4>Bitcoin Nodes:</h4>
-              <span>{format(currentData.bitcoinNodes)}</span>
-            </div>
             <div className="stat">
               <h4>Hashrate: </h4>
               <span>
@@ -222,10 +190,8 @@ const IndexPage = () => {
               </span>
             </div>
             <div className="stat">
-              <h4>Mining Difficulty: </h4>
-              <span>
-                {(currentData.difficulty / 1000000000000).toFixed(4)} trillion
-              </span>
+              <h4>Bitcoin Nodes:</h4>
+              <span>{format(currentData.bitcoinNodes)}</span>
             </div>
             <div className="stat">
               <h4>Bitcoins Mined: </h4>
@@ -234,6 +200,13 @@ const IndexPage = () => {
                   (currentData.bestBlockHeight - accurateHeight) * 12.5 +
                     accurateBitcoins
                 )}{" "}
+              </span>
+            </div>
+            <div className="stat">
+              <h4>Mining Difficulty: </h4>
+
+              <span>
+                {(currentData.difficulty / 1000000000000).toFixed(4)} trillion
               </span>
             </div>
           </div>
