@@ -14,6 +14,7 @@ import "../components/styles.css"
 
 function ChartsPage(props) {
   const [dailyData, setDailyData] = useState([])
+  const [daysToView, setDaysToView] = useState(7)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -70,161 +71,249 @@ function ChartsPage(props) {
     let accurateHeight = 636756
     let accurateBitcoins = 18417196
 
-    const mempoolSize = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Transactions: day.mempoolSize,
-        key: "Transactions",
-      }
-    })
-    const networkHashrate = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Exahashes: day.networkHashrate / 1000000000000000000,
-        key: "Exahashes",
-      }
-    })
-    const numBlocks = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
+    const mempoolSize = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Transactions: day.mempoolSize,
+          key: "Transactions",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const networkHashrate = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Exahashes: day.networkHashrate / 1000000000000000000,
+          key: "Exahashes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const numBlocks = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
 
-      return {
-        name: `${formattedDate}`,
-        Blocks: day.blocksLastDay,
-        key: "Blocks",
-      }
-    })
-    const avgBlockIntervalData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Minutes: ((144 / day.blocksLastDay) * 10).toFixed(2),
-        key: "Minutes",
-      }
-    })
+        return {
+          name: `${formattedDate}`,
+          Blocks: day.blocksLastDay,
+          key: "Blocks",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const avgBlockIntervalData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Minutes: ((144 / day.blocksLastDay) * 10).toFixed(2),
+          key: "Minutes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
 
-    const numberOfNodes = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Nodes: day.bitcoinNodes,
-        key: "Nodes",
-      }
-    })
-    const txLastDay = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Transactions: day.transactionsLastDay,
-        key: "Transactions",
-      }
-    })
-    const avgTxSizeData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Bytes: (day.blockSizeLastDay / day.transactionsLastDay).toFixed(2),
-        key: "Bytes",
-      }
-    })
-    const blockSpaceAddedData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Megabytes: (day.blockSizeLastDay / 1000000).toFixed(2),
-        key: "Megabytes",
-      }
-    })
-    const avgBlockSizeData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Megabytes: (day.blockSizeLastDay / day.blocksLastDay / 1000000).toFixed(
-          2
-        ),
-        key: "Megabytes",
-      }
-    })
-    const newBitcoinMinedData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Bitcoins: day.blocksLastDay * 6.25,
-        key: "Bitcoins",
-      }
-    })
+    const numberOfNodes = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Nodes: day.bitcoinNodes,
+          key: "Nodes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const txLastDay = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Transactions: day.transactionsLastDay,
+          key: "Transactions",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const avgTxSizeData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Bytes: (day.blockSizeLastDay / day.transactionsLastDay).toFixed(2),
+          key: "Bytes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const blockSpaceAddedData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Megabytes: (day.blockSizeLastDay / 1000000).toFixed(2),
+          key: "Megabytes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const avgBlockSizeData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Megabytes: (
+            day.blockSizeLastDay /
+            day.blocksLastDay /
+            1000000
+          ).toFixed(2),
+          key: "Megabytes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const newBitcoinMinedData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Bitcoins: day.blocksLastDay * 6.25,
+          key: "Bitcoins",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
 
-    const networkDifficultyData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Difficulty: (day.difficulty / 1000000000000).toFixed(4),
-        key: "Difficulty",
-      }
-    })
-    const totalBitcoinData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Bitcoins:
-          (day.bestBlockHeight - accurateHeight) * 12.5 + accurateBitcoins,
-        key: "Bitcoins",
-      }
-    })
-    const bestBlockHeightData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Blocks: day.bestBlockHeight,
-        key: "Blocks",
-      }
-    })
-    const lightningChannelData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Channels: day.lightningChannels,
-        key: "Channels",
-      }
-    })
-    const lightningNodeData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Nodes: day.lightningNodes,
-        key: "Nodes",
-      }
-    })
-    const lightningCapacityData = dailyData.map((day, index) => {
-      const chartDate = new Date(day.date)
-      const formattedDate = `${chartDate.getMonth() + 1}/${chartDate.getDate()}`
-      return {
-        name: `${formattedDate}`,
-        Bitcoins: day.lightningCapacity,
-        key: "Bitcoins",
-      }
-    })
+    const networkDifficultyData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Difficulty: (day.difficulty / 1000000000000).toFixed(4),
+          key: "Difficulty",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const totalBitcoinData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Bitcoins:
+            (day.bestBlockHeight - accurateHeight) * 12.5 + accurateBitcoins,
+          key: "Bitcoins",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const bestBlockHeightData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Blocks: day.bestBlockHeight,
+          key: "Blocks",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const lightningChannelData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Channels: day.lightningChannels,
+          key: "Channels",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const lightningNodeData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Nodes: day.lightningNodes,
+          key: "Nodes",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
+    const lightningCapacityData = dailyData
+      .map((day, index) => {
+        const chartDate = new Date(day.date)
+        const formattedDate = `${
+          chartDate.getMonth() + 1
+        }/${chartDate.getDate()}`
+        return {
+          name: `${formattedDate}`,
+          Bitcoins: day.lightningCapacity,
+          key: "Bitcoins",
+        }
+      })
+      .filter((_, index, array) => index > array.length - daysToView - 1)
 
     return (
       <Layout>
         <div className="charts">
-          <h1>Bitcoin Charts</h1>
+          <div className="charts-header">
+            <h1>Bitcoin Charts</h1>
+            <div className="charts-controls">
+              <button
+                onClick={() => setDaysToView(7)}
+                className={
+                  "charts-control" +
+                  (daysToView === 7 ? " charts-control-selected" : "")
+                }
+              >
+                7 days
+              </button>
+              <button
+                onClick={() => setDaysToView(30)}
+                className={
+                  "charts-control" +
+                  (daysToView === 30 ? " charts-control-selected" : "")
+                }
+              >
+                30 days
+              </button>
+            </div>
+          </div>
           <h2 id="mempool-size">Mempool Size (Txns)</h2>
           <StatsChart data={mempoolSize} dataKey="Transactions" />
           <h2 id="network-hashrate">Network Hashrate (EH/s)</h2>
@@ -233,7 +322,9 @@ function ChartsPage(props) {
           <StatsChart data={numBlocks} dataKey="Blocks" />
           <h2 id="block-interval">Average Block Interval (24h)</h2>
           <StatsChart data={avgBlockIntervalData} dataKey="Minutes" />
-          <h2 id="bitcoin-nodes">Bitcoin Nodes</h2>
+          <h2 id="bitcoin-nodes">
+            Bitcoin Nodes <span className="italic">(source: bitnodes)</span>
+          </h2>
           <StatsChart data={numberOfNodes} dataKey="Nodes" />
           <h2 id="daily-txns">Transactions (24h)</h2>
           <StatsChart data={txLastDay} dataKey="Transactions" />
@@ -251,15 +342,30 @@ function ChartsPage(props) {
           <StatsChart data={totalBitcoinData} dataKey="Bitcoins" />
           <h2 id="block-height">Current Block Height</h2>
           <StatsChart data={bestBlockHeightData} dataKey="Blocks" />
-          <h2 id="lightning-channels">Lightning Channels (Public)</h2>
+          <h2 id="lightning-channels">
+            Lightning Channels (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <StatsChart data={lightningChannelData} dataKey="Channels" />
-          <h2 id="lightning-nodes">Lightning Nodes (Public)</h2>
+          <h2 id="lightning-nodes">
+            Lightning Nodes (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <StatsChart data={lightningNodeData} dataKey="Nodes" />
-          <h2 id="lightning-capacity">Lightning Capacity (Public)</h2>
+          <h2 id="lightning-capacity">
+            Lightning Capacity (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <StatsChart data={lightningCapacityData} dataKey="Bitcoins" />
         </div>
         <div className="mobile-charts">
-          <h1>Bitcoin Charts</h1>
+          <div className="charts-header">
+            <h1>Bitcoin Charts</h1>
+            <div className="charts-controls-mobile">
+              <button onClick={() => setDaysToView(7)}>7 days</button>
+              <button onClick={() => setDaysToView(30)}>30 days</button>
+            </div>
+          </div>
           <h2 id="mempool-size">Mempool Size (Txns)</h2>
           <MobileStatsChart data={mempoolSize} dataKey="Transactions" />
           <h2 id="network-hashrate">Network Hashrate (EH/s)</h2>
@@ -268,7 +374,9 @@ function ChartsPage(props) {
           <MobileStatsChart data={numBlocks} dataKey="Blocks" />
           <h2 id="block-interval">Average Block Interval (24h)</h2>
           <MobileStatsChart data={avgBlockIntervalData} dataKey="Minutes" />
-          <h2 id="bitcoin-nodes">Bitcoin Nodes</h2>
+          <h2 id="bitcoin-nodes">
+            Bitcoin Nodes <span className="italic">(source: bitnodes)</span>
+          </h2>
           <MobileStatsChart data={numberOfNodes} dataKey="Nodes" />
           <h2 id="daily-txns">Transactions (24h)</h2>
           <MobileStatsChart data={txLastDay} dataKey="Transactions" />
@@ -286,11 +394,20 @@ function ChartsPage(props) {
           <MobileStatsChart data={totalBitcoinData} dataKey="Bitcoins" />
           <h2 id="block-height">Current Block Height</h2>
           <MobileStatsChart data={bestBlockHeightData} dataKey="Blocks" />
-          <h2 id="lightning-channels">Lightning Channels (Public)</h2>
+          <h2 id="lightning-channels">
+            Lightning Channels (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <MobileStatsChart data={lightningChannelData} dataKey="Channels" />
-          <h2 id="lightning-nodes">Lightning Nodes (Public)</h2>
+          <h2 id="lightning-nodes">
+            Lightning Nodes (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <MobileStatsChart data={lightningNodeData} dataKey="Nodes" />
-          <h2 id="lightning-capacity">Lightning Capacity (Public)</h2>
+          <h2 id="lightning-capacity">
+            Lightning Capacity (Public){" "}
+            <span className="italic">(source: 1ml)</span>
+          </h2>
           <MobileStatsChart data={lightningCapacityData} dataKey="Bitcoins" />
         </div>
       </Layout>

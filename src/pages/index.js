@@ -191,7 +191,10 @@ const IndexPage = () => {
             </div>
             <div className="stat">
               <h4>Bitcoin Nodes:</h4>
-              <span>{format(currentData.bitcoinNodes)}</span>
+              <span>
+                {format(currentData.bitcoinNodes)}{" "}
+                <span className="italic">(source: bitnodes)</span>
+              </span>
             </div>
             <div className="stat">
               <h4>Bitcoins Mined: </h4>
@@ -245,15 +248,24 @@ const IndexPage = () => {
             <div className="three-wide section-5">
               <div className="stat">
                 <h4>Channel Count: </h4>
-                <span>{format(currentData.lightningChannels)}</span>
+                <span>
+                  {format(currentData.lightningChannels)}{" "}
+                  <span className="italic">(source: 1ml)</span>
+                </span>
               </div>
               <div className="stat">
                 <h4>Node Count: </h4>
-                <span>{format(currentData.lightningNodes)}</span>
+                <span>
+                  {format(currentData.lightningNodes)}{" "}
+                  <span className="italic">(source: 1ml)</span>
+                </span>
               </div>
               <div className="stat">
                 <h4>Capacity: </h4>
-                <span>{format(currentData.lightningCapacity)} BTC</span>
+                <span>
+                  {format(currentData.lightningCapacity)} BTC{" "}
+                  <span className="italic">(source: 1ml)</span>
+                </span>
               </div>
             </div>
           </div>
