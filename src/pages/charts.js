@@ -472,8 +472,8 @@ class MobileStatsChart extends PureComponent {
         data={this.props.data}
         margin={{
           top: 15,
-          right: 20,
-          left: 10,
+          right: 30,
+          left: 20,
           bottom: 25,
         }}
       >
