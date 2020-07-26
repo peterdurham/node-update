@@ -238,7 +238,7 @@ section h2 svg {
   border: 1px solid #f7931a;
 }
 
-.charts-controls-mobile button {
+.charts-control-mobile {
   background: #fff;
   padding: 4px 10px;
   color: #383838;
@@ -246,6 +246,10 @@ section h2 svg {
   cursor: pointer;
   margin-left: 8px;
   font-size: 12px;
+}
+.charts-control-mobile-selected {
+  color: #f7931a;
+  border: 1px solid #f7931a;
 }
 
 .mobile-charts {

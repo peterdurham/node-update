@@ -362,8 +362,24 @@ function ChartsPage(props) {
           <div className="charts-header">
             <h1>Bitcoin Charts</h1>
             <div className="charts-controls-mobile">
-              <button onClick={() => setDaysToView(7)}>7 days</button>
-              <button onClick={() => setDaysToView(30)}>30 days</button>
+              <button
+                onClick={() => setDaysToView(7)}
+                className={
+                  "charts-control-mobile" +
+                  (daysToView === 7 ? " charts-control-mobile-selected" : "")
+                }
+              >
+                7 days
+              </button>
+              <button
+                onClick={() => setDaysToView(30)}
+                className={
+                  "charts-control-mobile" +
+                  (daysToView === 30 ? " charts-control-mobile-selected" : "")
+                }
+              >
+                30 days
+              </button>
             </div>
           </div>
           <h2 id="mempool-size">Mempool Size (Txns)</h2>
