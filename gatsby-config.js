@@ -6,6 +6,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -13,8 +16,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -24,7 +26,7 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#F7931A`,
         display: `minimal-ui`,
-        icon: `src/images/bitcoin-logo.png`, // This path is relative to the root of the site.
+        icon: `src/images/bitcoin-logo.png`,
       },
     },
     {

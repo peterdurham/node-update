@@ -8,9 +8,80 @@ import {
   Tooltip,
   Legend,
 } from "recharts"
+import styled from "styled-components"
+
+import Loader from "../components/loader"
 import Layout from "../components/layout"
 import axios from "axios"
-import "../components/styles.css"
+
+const ChartStyles = styled.div`
+  h1 {
+    margin: 20px 0;
+  }
+  .charts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .charts-controls {
+    margin-right: 20px;
+  }
+  .charts-control {
+    background: ${props => props.theme.offWhite};
+    padding: 8px 14px;
+    color: ${props => props.theme.grey};
+    border: 1px solid ${props => props.theme.grey};
+    cursor: pointer;
+    margin-left: 12px;
+    font-size: 16px;
+  }
+  .charts-control:hover {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+  .charts-control:active,
+  .charts-control:focus {
+    outline: 0;
+  }
+  .charts-control-selected {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+
+  .charts-control-mobile {
+    background: ${props => props.theme.offWhite};
+    padding: 4px 10px;
+    color: ${props => props.theme.grey};
+    border: 1px solid ${props => props.theme.grey};
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  .charts-control-mobile-selected {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+
+  .mobile-charts {
+    display: none;
+  }
+  .mobile-charts h1 {
+    font-size: 22px;
+  }
+  .mobile-charts h2 {
+    font-size: 16px;
+  }
+  @media (max-width: 840px) {
+    display: none;
+
+    .mobile-charts {
+      display: flex;
+      padding-top: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+`
 
 function ChartsPage(props) {
   const [dailyData, setDailyData] = useState([])
@@ -24,6 +95,7 @@ function ChartsPage(props) {
         const dailyResponse = await axios.get(
           "https://node.nodeupdate.com/nodeinfo/dailydata"
         )
+
         setDailyData(dailyResponse.data)
         setTimeout(() => {
           setIsLoaded(true)
@@ -53,21 +125,10 @@ function ChartsPage(props) {
   if (!isLoaded)
     return (
       <Layout>
-        <div className="loader"></div>
+        <Loader />
       </Layout>
     )
   else {
-    // const date = new Date()
-    // const time = date.getTime() / 1000
-    // const ms = date.getTime()
-    // // const lastUpdate = currentData.date
-    // const lastUpdateTime = new Date(lastUpdate)
-    // const lastUpdateString = lastUpdateTime.toLocaleString()
-    // const timeSinceBlock = (
-    //   (time - currentData.lastBlockInfo.time) /
-    //   60
-    // ).toFixed(2)
-
     let accurateHeight = 636756
     let accurateBitcoins = 18417196
 
@@ -290,7 +351,7 @@ function ChartsPage(props) {
 
     return (
       <Layout>
-        <div className="charts">
+        <ChartStyles>
           <div className="charts-header">
             <h1>Bitcoin Charts</h1>
             <div className="charts-controls">
@@ -357,8 +418,8 @@ function ChartsPage(props) {
             <span className="italic">(source: 1ml)</span>
           </h2>
           <StatsChart data={lightningCapacityData} dataKey="Bitcoins" />
-        </div>
-        <div className="mobile-charts">
+        </ChartStyles>
+        <ChartStyles className="mobile-charts">
           <div className="charts-header">
             <h1>Bitcoin Charts</h1>
             <div className="charts-controls-mobile">
@@ -425,7 +486,7 @@ function ChartsPage(props) {
             <span className="italic">(source: 1ml)</span>
           </h2>
           <MobileStatsChart data={lightningCapacityData} dataKey="Bitcoins" />
-        </div>
+        </ChartStyles>
       </Layout>
     )
   }
