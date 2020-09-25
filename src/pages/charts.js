@@ -72,20 +72,82 @@ const ChartStyles = styled.div`
     font-size: 16px;
   }
   @media (max-width: 840px) {
-    display: none;
-
-    .mobile-charts {
-      display: flex;
-      padding-top: 20px;
-      flex-direction: column;
-      align-items: center;
+    & {
+      display: none;
     }
+  }
+`
+
+const MobileChartStyles = styled.div`
+  display: none;
+  h1 {
+    margin: 20px 0;
+  }
+  .charts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .charts-controls {
+    margin-right: 20px;
+  }
+  .charts-control {
+    background: ${props => props.theme.offWhite};
+    padding: 8px 14px;
+    color: ${props => props.theme.grey};
+    border: 1px solid ${props => props.theme.grey};
+    cursor: pointer;
+    margin-left: 12px;
+    font-size: 16px;
+  }
+  .charts-control:hover {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+  .charts-control:active,
+  .charts-control:focus {
+    outline: 0;
+  }
+  .charts-control-selected {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+
+  .charts-control-mobile {
+    background: ${props => props.theme.offWhite};
+    padding: 4px 10px;
+    color: ${props => props.theme.grey};
+    border: 1px solid ${props => props.theme.grey};
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  .charts-control-mobile-selected {
+    color: ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.orange};
+  }
+
+  .mobile-charts {
+    display: none;
+  }
+  .mobile-charts h1 {
+    font-size: 22px;
+  }
+  .mobile-charts h2 {
+    font-size: 16px;
+  }
+
+  @media (max-width: 840px) {
+    display: flex;
+    padding-top: 20px;
+    flex-direction: column;
+    align-items: center;
   }
 `
 
 function ChartsPage(props) {
   const [dailyData, setDailyData] = useState([])
-  const [daysToView, setDaysToView] = useState(7)
+  const [daysToView, setDaysToView] = useState(30)
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -356,15 +418,6 @@ function ChartsPage(props) {
             <h1>Bitcoin Charts</h1>
             <div className="charts-controls">
               <button
-                onClick={() => setDaysToView(7)}
-                className={
-                  "charts-control" +
-                  (daysToView === 7 ? " charts-control-selected" : "")
-                }
-              >
-                7 days
-              </button>
-              <button
                 onClick={() => setDaysToView(30)}
                 className={
                   "charts-control" +
@@ -372,6 +425,15 @@ function ChartsPage(props) {
                 }
               >
                 30 days
+              </button>
+              <button
+                onClick={() => setDaysToView(90)}
+                className={
+                  "charts-control" +
+                  (daysToView === 90 ? " charts-control-selected" : "")
+                }
+              >
+                90 days
               </button>
             </div>
           </div>
@@ -419,19 +481,10 @@ function ChartsPage(props) {
           </h2>
           <StatsChart data={lightningCapacityData} dataKey="Bitcoins" />
         </ChartStyles>
-        <ChartStyles className="mobile-charts">
+        <MobileChartStyles>
           <div className="charts-header">
             <h1>Bitcoin Charts</h1>
             <div className="charts-controls-mobile">
-              <button
-                onClick={() => setDaysToView(7)}
-                className={
-                  "charts-control-mobile" +
-                  (daysToView === 7 ? " charts-control-mobile-selected" : "")
-                }
-              >
-                7 days
-              </button>
               <button
                 onClick={() => setDaysToView(30)}
                 className={
@@ -440,6 +493,15 @@ function ChartsPage(props) {
                 }
               >
                 30 days
+              </button>
+              <button
+                onClick={() => setDaysToView(90)}
+                className={
+                  "charts-control-mobile" +
+                  (daysToView === 90 ? " charts-control-mobile-selected" : "")
+                }
+              >
+                90 days
               </button>
             </div>
           </div>
@@ -486,7 +548,7 @@ function ChartsPage(props) {
             <span className="italic">(source: 1ml)</span>
           </h2>
           <MobileStatsChart data={lightningCapacityData} dataKey="Bitcoins" />
-        </ChartStyles>
+        </MobileChartStyles>
       </Layout>
     )
   }

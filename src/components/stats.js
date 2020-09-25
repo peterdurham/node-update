@@ -38,7 +38,7 @@ const StatsStyles = styled.div`
     max-height: 72px;
   }
   .section-2 {
-    max-height: 94px;
+    max-height: 108px;
   }
   .section-3 {
     max-height: 72px;
