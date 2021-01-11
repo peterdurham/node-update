@@ -186,7 +186,7 @@ function Layout({ children }) {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
 
-      {context.currentData && (
+      {context && context.currentData && (
         <AppStyles>
           <div className="app-container">
             <Nav currentData={context.currentData} />
