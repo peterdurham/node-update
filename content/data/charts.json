@@ -1,0 +1,60 @@
+[
+  { "key": "USD", "label": "Price (USD)", "units": "USD", "slug": "price" },
+  { "key": "Sats", "label": "Sats per dollar", "units": "Sats", "slug": "sats" },
+  { "key": "Gold", "label": "Sats per gold oz", "units": "Sats", "slug": "gold" },
+  {
+    "key": "Transactions",
+    "label": "Mempool Size",
+    "units": "Txns",
+    "slug": "mempool"
+  },
+  {
+    "key": "Hashrate",
+    "label": "Network Hashrate",
+    "units": "EH/s",
+    "slug": "hashrate"
+  },
+  {
+    "key": "Blocks",
+    "label": "Blocks Mined (24h)",
+    "slug": "blocks-mined-24h"
+  },
+  {
+    "key": "Minutes",
+    "label": "Avg Block Interval (24h)",
+    "slug": "block-interval-24h"
+  },
+  {
+    "key": "Nodes",
+    "label": "Total Bitcoin Nodes",
+    "slug": "bitcoin-node-count"
+  },
+  {
+    "key": "Transactions",
+    "label": "Total Txns (24h)",
+    "slug": "transactions-24h"
+  },
+  {
+    "key": "Bytes",
+    "label": "Avg Txn Size (24h)",
+    "slug": "avg-transaction-size-24h"
+  },
+  {
+    "key": "Megabytes",
+    "label": "Block Space Added (24h)",
+    "slug": "block-space-added-24h"
+  },
+  {
+    "key": "Megabytes",
+    "label": "Avg Block Size (24h)",
+    "slug": "avg-block-size-24h"
+  },
+  {
+    "key": "Bitcoins",
+    "label": "New Blocks Mined (24h)",
+    "slug": "new-bitcoin-mined-24h"
+  },
+  { "key": "Difficulty", "label": "Mining Difficulty", "slug": "difficulty" },
+  { "key": "Bitcoins", "label": "Total Bitcoins", "slug": "total-bitcoins" },
+  { "key": "Blocks", "label": "Current Block", "slug": "current-block" }
+]

@@ -5,28 +5,11 @@ import Layout from "../components/layout"
 import Wizard from "../images/wizard.jpg"
 import { IoLogoTwitter } from "react-icons/io"
 
-const AboutStyles = styled.div`
-  .twitter-link {
-    display: flex;
-    align-items: center;
-  }
-  .twitter-link svg {
-    margin-left: 8px;
-  }
-  .twitter-link:hover {
-    color: ${props => props.theme.twitterBlue};
-  }
-  .mb-60 {
-    margin-bottom: 60px;
-  }
-  .wizard-image {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 20px;
-  }
-`
+
 
 function AboutPage() {
+
+
   return (
     <Layout>
       <AboutStyles>
@@ -84,4 +67,24 @@ function AboutPage() {
     </Layout>
   )
 }
+const AboutStyles = styled.div`
+  .twitter-link {
+    display: flex;
+    align-items: center;
+  }
+  .twitter-link svg {
+    margin-left: 8px;
+  }
+  .twitter-link:hover {
+    color: ${props => props.theme.twitterBlue};
+  }
+  .mb-60 {
+    margin-bottom: 60px;
+  }
+  .wizard-image {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+`
 export default AboutPage

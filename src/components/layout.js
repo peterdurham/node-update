@@ -1,15 +1,27 @@
 import React from "react"
-
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import Header from "../components/header"
+
+import Nav from "./nav"
+import Footer from './footer'
+import {statsContext} from '../components/provider'
+import './prism.css'
 
 const theme = {
-  black: "#030303",
   orange: "#f7931a",
   offWhite: "#f5f5f5",
-  lightGrey: "rgba(3,3,3,.1)",
-  grey: "#383838",
+  borderLight: "rgb(239,242,245)",
+  lightGrey: "rgb(88,102,126)",
+  grey: "rgba(56,56,56)",
+  darkGrey: "rgb(34,37,49)",
+  black: "rgb(1,1,1)",
   twitterBlue: "#1da1f2",
+  blue: "rgb(56, 97, 251)",
+  blueHover: "rgb(16, 112, 224)",
+  blueTania: "#b9cdfb",
+  blueTaniaHover: "#96b4f9",
+  blueBitcoin: "#3490E6",
+  blueHoverBitcoin: "#0056b3",
+  fullWidth: "1200px",
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -30,6 +42,13 @@ body {
   color: ${theme.grey};
   font-size: 17px;
 }
+button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+button:focus {
+  outline: 0;
+}
 h2 {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -44,58 +63,135 @@ p {
 ul {
   margin-left: 20px;
   margin-bottom: 20px;
+  padding-left: 20px;
 }
+li {
+  font-size: 18px;
+  line-height: 31.5px;
+}
+
 a {
   text-decoration: none;
-  color: ${theme.grey};
   transition: all 0.3s;
+  color: ${theme.blue};
 }
 a:hover {
-  color: ${theme.orange};
+  color: ${theme.blueHover};
 }
+
+
 .italic {
   font-style: italic;
   font-size: 12px;
 }
+code.language-text {
+  color: rgb(48, 48, 48);
+    background: rgb(240, 240, 240);
+    border: 1px solid rgb(204, 204, 204);
+    padding: 4px 8px;
+    border-radius: 0.3em;
+}
+.filename {
+  font-size: 14px;
+    margin-bottom: -8px;
+    padding: 7px 0;
+    line-height: 1;
+    background: linear-gradient(180deg,#eaeaea,#d2d2d2);
+    border: 1px solid #b9bcbd;
+    color: #4d494d;
+    z-index: 2;
+    text-shadow: 0 1px 0 hsla(0,0%,100%,.5);
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,.5), 0 1px 0 #515151;
+    text-align: center;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
 
+.gatsby-highlight {
+  margin-bottom: 31px;
+}
 
+table {
+  font-size: 18px;
+  margin: 31px 0;
+  display: block;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
+}
+
+thead,
+tbody {
+  white-space: nowrap;
+}
+
+th {
+  border-bottom: 2px solid rgb(214, 217, 222);
+}
+
+tfoot th {
+  border-top: 1px solid rgb(214, 217, 222);
+}
+
+td {
+  border-bottom: 1px solid rgb(214, 217, 222);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 7.5px !important;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(241, 244, 248);
+}
+
+@media screen and (min-width: 800px) {
+  table {
+    display: table;
+    border: 1px solid rgb(214, 217, 222);
+
+  }
+  thead,
+  tbody {
+    white-space: normal;
+  }
+}
 `
 
 const AppStyles = styled.div`
-  background: #000;
+  background: #fff;
   min-height: 100vh;
-  padding: 60px 0;
 
   .app-container {
-    width: 840px;
+    width: 100%;
     margin: 0 auto;
-    background: ${theme.offWhite};
-    padding: 24px;
-    box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.1);
     min-height: 778px;
-  }
-
-  @media (max-width: 840px) {
-    padding-top: 20px;
-
-    .app-container {
-      width: 92%;
-      margin: 0 4%;
-      margin-bottom: 120px;
-    }
   }
 `
 
 function Layout({ children }) {
+  const {currentData} = React.useContext(statsContext)
+
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AppStyles>
         <div className="app-container">
-          <Header />
+          <Nav currentData={currentData}/>
           <div>{children}</div>
         </div>
+      <Footer />
       </AppStyles>
     </ThemeProvider>
   )

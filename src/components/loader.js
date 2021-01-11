@@ -1,6 +1,18 @@
 import React from "react"
 import styled from "styled-components"
 
+function Loader() {
+  return (
+    <LoaderContainer>
+      <LoaderStyles />
+    </LoaderContainer>
+  )
+}
+
+const LoaderContainer = styled.div`
+  height: 900px;
+`
+
 const LoaderStyles = styled.div`
   &,
   &:before,
@@ -63,7 +75,4 @@ const LoaderStyles = styled.div`
   }
 `
 
-function Loader() {
-  return <LoaderStyles />
-}
 export default Loader

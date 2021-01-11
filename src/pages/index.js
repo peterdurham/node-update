@@ -1,62 +1,63 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo"
-import axios from "axios"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
-import Loader from "../components/loader"
-import Stats from "../components/stats"
+import Header from "../components/header"
+import Preview from "../components/preview"
 
 const IndexPage = () => {
-  const [currentData, setCurrentData] = useState([])
-  const [error, setError] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    const fetchCurrentData = async () => {
-      try {
-        const currentResponse = await axios.get(
-          "https://node.nodeupdate.com/nodeinfo/currentdata"
-        )
-        setCurrentData(currentResponse.data[0])
-        setTimeout(() => {
-          setIsLoaded(true)
-          console.log(`Hello ✌(ツ)`)
-        }, 400)
-      } catch (e) {
-        setError(error)
-        setIsLoaded(true)
+  const { twitterImage } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+            social {
+              twitter
+            }
+          }
+        }
+        twitterImage: file(absolutePath: { regex: "/twitter_homepage.jpg/" }) {
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
-    }
-    fetchCurrentData()
-  }, [error])
+    `
+  )
 
-  const format = num => {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
-  }
-  const msToTime = ms => {
-    var seconds = ms / 1000
-    var minutes = parseInt(seconds / 60, 10)
-    seconds = seconds % 60
-    var hours = parseInt(minutes / 60, 10)
-    minutes = minutes % 60
 
-    return hours + ":" + minutes + ":" + seconds
-  }
-
-  if (error) return <Layout>Error: {error.message}</Layout>
-  if (!isLoaded)
-    return (
-      <Layout>
-        <Loader />
-      </Layout>
-    )
-  else {
-    return (
-      <Layout>
-        <SEO />
-        <Stats currentData={currentData} format={format} />
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+      <SEO
+        pageType="Home"
+        title="Node Update Homepage"
+        description="Bitcoin Core setup and development guides, stats, charts, and resources."
+        canonical={`https://www.nodeupdate.com/`}
+        twitterImage={`https://nodeupdate.com${twitterImage.childImageSharp.fluid.src}`}
+      />
+      <ContentStyles>
+        <Header />
+        <Preview />
+      </ContentStyles>
+    </Layout>
+  )
 }
+
+const ContentStyles = styled.div`
+  & #main {
+    width: ${props => props.theme.fullWidth};
+    margin: 0 auto;
+
+    & a {
+      display: block;
+    }
+  }
+`
+
 export default IndexPage

@@ -1,0 +1,248 @@
+[
+  {
+    "type": "reference",
+    "name": "Bitcoin Configuration Options",
+    "description": "",
+    "link": "http://localhost:8000/bitcoin-config",
+    "logo": "../assets/site/site-logo.png"
+  },
+  {
+    "type": "reference",
+    "name": "Bitcoin JSON RPC Commands",
+    "description": "",
+    "link": "http://localhost:8000/rpc-commands",
+    "logo": "../assets/site/site-logo.png"
+  },
+
+  {
+    "type": "reference",
+    "name": "Gigi's Bitcoin Resources",
+    "link": "https://bitcoin-resources.com/",
+    "description": "",
+    "logo": "../assets/resources/reference/gigis_bitcoin_resources.png"
+  },
+  {
+    "type": "reference",
+    "name": "Jameson Lopp Bitcoin Information",
+    "link": "https://www.lopp.net/bitcoin-information.html",
+    "description": "",
+    "logo": "../assets/resources/reference/jameson_lopp_bitcoin_resources.png"
+  },
+  {
+    "type": "reference",
+    "name": "Bitcoin Whitepaper",
+    "link": "https://bitcoin.org/bitcoin.pdf",
+    "description": "",
+    "logo": "../assets/resources/reference/bitcoin_whitepaper.png"
+  },
+  {
+    "type": "reference",
+    "name": "Satoshi Nakamoto Institute",
+    "link": "https://nakamotoinstitute.org/",
+    "description": "",
+    "logo": "../assets/resources/reference/satoshi_nakamoto_institute.png"
+  },
+  {
+    "type": "podcast",
+    "name": "Bitcoin Magazine Podcast",
+    "link": "https://www.stitcher.com/show/the-bitcoin-magazine-podcast",
+    "description": "",
+    "logo": "../assets/resources/podcast/bitcoin_magazine.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "Bitcoin Rapid Fire",
+    "link": "https://anchor.fm/john-vallis",
+    "description": "",
+    "logo": "../assets/resources/podcast/bitcoin_rapid_fire.png"
+  },
+  {
+    "type": "podcast",
+    "name": "Citizen Bitcoin Podcast",
+    "link": "https://citizenbitcoin.world/",
+    "description": "",
+    "logo": "../assets/resources/podcast/citizen_bitcoin.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "Noded Bitcoin Podcast",
+    "link": "https://noded.org/",
+    "description": "",
+    "logo": "../assets/resources/podcast/noded_bitcoin.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "Orange Pill Podcast",
+    "link": "https://orangepill.buzzsprout.com/",
+    "description": "",
+    "logo": "../assets/resources/podcast/orange_pill.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "The Pomp Podcast",
+    "link": "https://anthonypompliano.com/podcast/",
+    "description": "",
+    "logo": "../assets/resources/podcast/pomp_podcast.png"
+  },
+  {
+    "type": "podcast",
+    "name": "Swan Signal",
+    "link": "https://swansignal.simplecast.com/",
+    "description": "",
+    "logo": "../assets/resources/podcast/swan_signal.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "Tales From the Crypt",
+    "link": "https://www.stitcher.com/show/tales-from-the-crypt",
+    "description": "",
+    "logo": "../assets/resources/podcast/tales_from_the_crypt.jpg"
+  },
+  {
+    "type": "podcast",
+    "name": "Stefan Livera Podcast",
+    "link": "https://stephanlivera.com/",
+    "description": "",
+    "logo": "../assets/resources/podcast/stephan_livera.png"
+  },
+  {
+    "type": "podcast",
+    "name": "What Bitcoin Did",
+    "link": "https://www.whatbitcoindid.com/",
+    "description": "",
+    "logo": "../assets/resources/podcast/what_bitcoin_did.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Bitcoin Core",
+    "link": "https://bitcoin.org/en/download",
+    "description": "",
+    "logo": "../assets/resources/software/bitcoin_core.jpg"
+  },
+  {
+    "type": "software",
+    "name": "BTC Pay Server",
+    "link": "https://btcpayserver.org/",
+    "description": "",
+    "logo": "../assets/resources/software/btc_pay_server.png"
+  },
+  {
+    "type": "software",
+    "name": "LND",
+    "link": "https://github.com/lightningnetwork/lnd",
+    "description": "",
+    "logo": "../assets/resources/software/lnd.jpg"
+  },
+  {
+    "type": "software",
+    "name": "MyNode",
+    "link": "https://mynodebtc.com/",
+    "description": "",
+    "logo": "../assets/resources/software/mynode.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Open Node",
+    "link": "https://www.opennode.com/",
+    "description": "",
+    "logo": "../assets/resources/software/open_node.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Raspiblitz",
+    "link": "https://github.com/rootzoll/raspiblitz",
+    "description": "",
+    "logo": "../assets/resources/software/raspiblitz.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Spectre Wallet",
+    "link": "https://specter.solutions/",
+    "description": "",
+    "logo": "../assets/resources/software/spectre.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Umbrel",
+    "link": "https://getumbrel.com/",
+    "description": "",
+    "logo": "../assets/resources/software/umbrel.jpg"
+  },
+  {
+    "type": "software",
+    "name": "Zap Lightning",
+    "link": "https://zaphq.io/",
+    "description": "",
+    "logo": "../assets/resources/software/zap.jpg"
+  },
+  {
+    "type": "book",
+    "name": "The Bitcoin Standard",
+    "link": "https://saifedean.com/thebitcoinstandard/",
+    "description": "",
+    "logo": "../assets/resources/book/the_bitcoin_standard.jpg"
+  },
+  {
+    "type": "book",
+    "name": "Mastering Bitcoin",
+    "link": "https://www.oreilly.com/library/view/mastering-bitcoin/9781491902639/",
+    "description": "",
+    "logo": "../assets/resources/book/mastering_bitcoin.jpg"
+  },
+  {
+    "type": "book",
+    "name": "The Creature From Jekyll Island",
+    "link": "https://www.amazon.com/Creature-Jekyll-Island-Federal-Reserve/dp/091298645X",
+    "description": "",
+    "logo": "../assets/resources/book/the_creature_from_jekyll_island.jpg"
+  },
+  {
+    "type": "book",
+    "name": "The Sovereign Individual",
+    "link": "https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720",
+    "description": "",
+    "logo": "../assets/resources/book/the_sovereign_individual.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "Bisq",
+    "link": "https://bisq.network/",
+    "description": "",
+    "logo": "../assets/resources/buy/bisq.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "CashApp",
+    "link": "https://cash.app/",
+    "description": "",
+    "logo": "../assets/resources/buy/cashapp.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "Gemini",
+    "link": "https://www.gemini.com/",
+    "description": "",
+    "logo": "../assets/resources/buy/gemini.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "Kraken",
+    "link": "https://www.kraken.com/",
+    "description": "",
+    "logo": "../assets/resources/buy/kraken.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "Strike",
+    "link": "https://strike.acinq.co/",
+    "description": "",
+    "logo": "../assets/resources/buy/strike.jpg"
+  },
+  {
+    "type": "buy",
+    "name": "Swan Bitcoin",
+    "link": "https://www.swanbitcoin.com/",
+    "description": "",
+    "logo": "../assets/resources/buy/swan_bitcoin.jpg"
+  }
+]
