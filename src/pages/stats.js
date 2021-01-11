@@ -1,26 +1,66 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
+import axios from "axios"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import Loader from "../components/loader"
-import { statsContext } from "../components/provider"
 
 const StatsPage = () => {
-  const {twitterImage} = useStaticQuery(graphql`
-  {
-    twitterImage: file(absolutePath: { regex: "/twitter_stats.jpg/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1200) {
-          ...GatsbyImageSharpFluid
+  const { twitterImage } = useStaticQuery(graphql`
+    {
+      twitterImage: file(absolutePath: { regex: "/twitter_stats.jpg/" }) {
+        childImageSharp {
+          fluid(maxWidth: 1200) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
-  }
-`)
+  `)
 
-  const context = React.useContext(statsContext)
+  const [currentData, setCurrentData] = React.useState(null)
+  const [error, setError] = React.useState(null)
+  const [isLoaded, setIsLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    const cachedDataJSON = localStorage.getItem("node-update-currentdata")
+    const cachedData = JSON.parse(cachedDataJSON)
+    const currentTime = new Date().getTime()
+
+    const fetchCurrentData = async () => {
+      try {
+        const currentResponse = await axios.get(
+          "https://node.nodeupdate.com/nodeinfo/currentdata"
+        )
+        setCurrentData(currentResponse.data[0])
+
+        const cachedData = {
+          currentData: currentResponse.data[0],
+          time: new Date().getTime(),
+        }
+
+        const cachedDataJSON = JSON.stringify(cachedData)
+        localStorage.setItem("node-update-currentdata", cachedDataJSON)
+
+        setTimeout(() => {
+          console.log(`Hello ✌(ツ)`)
+          setIsLoaded(true)
+        }, 400)
+      } catch (e) {
+        setError(error)
+        setIsLoaded(true)
+      }
+    }
+
+    if (!cachedData || (cachedData && currentTime - cachedData.time > 60000)) {
+      fetchCurrentData()
+    } else {
+      setCurrentData(cachedData.currentData)
+    }
+  }, [error])
+
   const date = new Date()
   const time = date.getTime() / 1000
   const accurateHeight = 636756
@@ -48,21 +88,21 @@ const StatsPage = () => {
         </p>
       </StatsHeader>
 
-      {context && !context.currentData && <Loader />}
-      {context && context.currentData && (
+      {!currentData && <Loader />}
+      {currentData && (
         <StatsContainer>
           <StatStyles>
             <h3>Price</h3>
             <div className="stats">
               <Stat
                 label="Bitcoin"
-                value={format(context.currentData.bitcoinPrice.toFixed(2))}
+                value={format(currentData.bitcoinPrice.toFixed(2))}
                 units="USD"
                 url={`/charts/price`}
               />
               <Stat
                 label="Dollar"
-                value={format(Math.round(100000000 / context.currentData.bitcoinPrice))}
+                value={format(Math.round(100000000 / currentData.bitcoinPrice))}
                 units="sats"
                 url={`/charts/sats`}
               />
@@ -71,7 +111,7 @@ const StatsPage = () => {
                 value={format(
                   Math.round(
                     100000000 *
-                      (context.currentData.goldPrice / context.currentData.bitcoinPrice)
+                      (currentData.goldPrice / currentData.bitcoinPrice)
                   )
                 )}
                 units="sats"
@@ -84,21 +124,21 @@ const StatsPage = () => {
             <div className="stats">
               <Stat
                 label="Mempool Size"
-                value={format(context.currentData.mempoolSize)}
+                value={format(currentData.mempoolSize)}
                 units="txns"
                 url={`/charts/mempool`}
               />
               <Stat
                 label="Hashrate"
                 value={(
-                  context.currentData.networkHashrate / 1000000000000000000
+                  currentData.networkHashrate / 1000000000000000000
                 ).toFixed(4)}
                 units="EH/s"
                 url={`/charts/hashrate`}
               />
               <Stat
                 label="Bitcoin Nodes"
-                value={format(context.currentData.bitcoinNodes)}
+                value={format(currentData.bitcoinNodes)}
                 units="nodes"
                 url={`/charts/bitcoin-node-count`}
               />
@@ -109,14 +149,14 @@ const StatsPage = () => {
             <div className="stats">
               <Stat
                 label="Difficulty"
-                value={(context.currentData.difficulty / 1000000000000).toFixed(4)}
+                value={(currentData.difficulty / 1000000000000).toFixed(4)}
                 units="trillion"
                 url={`/charts/difficulty`}
               />
               <Stat
                 label="Total Bitcoins"
                 value={format(
-                  (context.currentData.bestBlockHeight - accurateHeight) * 12.5 +
+                  (currentData.bestBlockHeight - accurateHeight) * 12.5 +
                     accurateBitcoins
                 )}
                 units="BTC"
@@ -125,7 +165,7 @@ const StatsPage = () => {
               <Stat
                 label="Stock to flow"
                 value={(
-                  ((context.currentData.bestBlockHeight - accurateHeight) * 12.5 +
+                  ((currentData.bestBlockHeight - accurateHeight) * 12.5 +
                     accurateBitcoins) /
                   (900 * 365)
                 ).toFixed(2)}
@@ -138,13 +178,13 @@ const StatsPage = () => {
               <span className="subheader">
                 (
                 {Math.floor(
-                  ((time - context.currentData.lastBlockInfo.time) / 60).toFixed(2)
+                  ((time - currentData.lastBlockInfo.time) / 60).toFixed(2)
                 )}
                 :
                 {(
                   "0" +
                   Math.floor(
-                    (((time - context.currentData.lastBlockInfo.time) / 60).toFixed(2) %
+                    (((time - currentData.lastBlockInfo.time) / 60).toFixed(2) %
                       1) *
                       60
                   )
@@ -155,30 +195,28 @@ const StatsPage = () => {
             <div className="stats">
               <Stat
                 label="Height"
-                value={format(context.currentData.bestBlockHeight)}
-                
+                value={format(currentData.bestBlockHeight)}
               />
               <Stat
                 label="Time"
                 value={new Date(
-                  context.currentData.lastBlockInfo.time * 1000
+                  currentData.lastBlockInfo.time * 1000
                 ).toLocaleTimeString()}
-                
               />
 
               <Stat
                 label="Tx Count"
-                value={format(context.currentData.lastBlockInfo.tx)}
+                value={format(currentData.lastBlockInfo.tx)}
                 units="txns"
               />
               <Stat
                 label="Size"
-                value={(context.currentData.lastBlockInfo.size / 1000000).toFixed(2)}
+                value={(currentData.lastBlockInfo.size / 1000000).toFixed(2)}
                 units="mb"
               />
               <Stat
                 label="Weight"
-                value={(context.currentData.lastBlockInfo.weight / 1000000).toFixed(2)}
+                value={(currentData.lastBlockInfo.weight / 1000000).toFixed(2)}
                 units="mb"
               />
             </div>
@@ -189,63 +227,63 @@ const StatsPage = () => {
             <div className="stats">
               <Stat
                 label="Blocks Mined"
-                value={context.currentData.blocksLastDay}
+                value={currentData.blocksLastDay}
                 units="blocks"
                 url={`/charts/blocks-mined-24h`}
               />
               <Stat
                 label="Block Reward"
-                value={format(context.currentData.blocksLastDay * 6.25)}
+                value={format(currentData.blocksLastDay * 6.25)}
                 units="BTC"
                 url={`/charts/new-bitcoin-mined-24h`}
               />
               <Stat
                 label="Avg Block Interval"
-                value={((144 / context.currentData.blocksLastDay) * 10).toFixed(2)}
+                value={((144 / currentData.blocksLastDay) * 10).toFixed(2)}
                 units="min"
                 url={`/charts/block-interval-24h`}
               />
               <Stat
                 label="Tx Count"
-                value={format(context.currentData.transactionsLastDay)}
+                value={format(currentData.transactionsLastDay)}
                 units="txns"
                 url={`/charts/transactions-24h`}
               />
               <Stat
                 label="Avg Tx Size"
                 value={(
-                  context.currentData.blockSizeLastDay / context.currentData.transactionsLastDay
+                  currentData.blockSizeLastDay / currentData.transactionsLastDay
                 ).toFixed(2)}
                 units="bytes"
                 url={`/charts/avg-transaction-size-24h`}
               />
               <Stat
                 label="Block Space Added"
-                value={(context.currentData.blockSizeLastDay / 1000000).toFixed(2)}
+                value={(currentData.blockSizeLastDay / 1000000).toFixed(2)}
                 units="mb"
                 url={`/charts/block-space-added-24h`}
               />
             </div>
           </StatStyles>
-          
+
           <StatStyles>
             <h3>Next Halvening</h3>
             <div className="stats">
               <Stat
                 label="Block Left"
-                value={format(840000 - context.currentData.bestBlockHeight)}
+                value={format(840000 - currentData.bestBlockHeight)}
                 units="blocks"
               />
               <Stat
                 label="Days Left"
                 value={format(
-                  ((840000 - context.currentData.bestBlockHeight) / 144).toFixed(2)
+                  ((840000 - currentData.bestBlockHeight) / 144).toFixed(2)
                 )}
                 units="days"
               />
               <Stat
                 label="Coins Left in Era"
-                value={format((840000 - context.currentData.bestBlockHeight) * 6.25)}
+                value={format((840000 - currentData.bestBlockHeight) * 6.25)}
                 units="BTC"
               />
             </div>
@@ -261,21 +299,21 @@ const StatsPage = () => {
             <div className="stat">
               <h4>Channel Count: </h4>
               <span>
-                {format(context.currentData.lightningChannels)}{" "}
+                {format(currentData.lightningChannels)}{" "}
                 <span className="italic">(source: 1ml)</span>
               </span>
             </div>
             <div className="stat">
               <h4>Node Count: </h4>
               <span>
-                {format(context.currentData.lightningNodes)}{" "}
+                {format(currentData.lightningNodes)}{" "}
                 <span className="italic">(source: 1ml)</span>
               </span>
             </div>
             <div className="stat">
               <h4>Capacity: </h4>
               <span>
-                {format(context.currentData.lightningCapacity)} BTC{" "}
+                {format(currentData.lightningCapacity)} BTC{" "}
                 <span className="italic">(source: 1ml)</span>
               </span>
             </div>
@@ -293,16 +331,17 @@ const Stat = ({ label, value, units, url }) => {
     <div className="stat">
       <div className="stat-label">{label} </div>
       <div className="stat-value">
-        {url ? (<Link to={url}>
-          {value}
-          {units && <span className="stat-units">&nbsp;{units}</span>}
-        </Link>): (
-          <div >
-          {value}
-          {units && <span className="stat-units">&nbsp;{units}</span>}
-        </div>
+        {url ? (
+          <Link to={url}>
+            {value}
+            {units && <span className="stat-units">&nbsp;{units}</span>}
+          </Link>
+        ) : (
+          <div>
+            {value}
+            {units && <span className="stat-units">&nbsp;{units}</span>}
+          </div>
         )}
-        
       </div>
     </div>
   )
