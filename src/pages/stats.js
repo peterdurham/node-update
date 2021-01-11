@@ -48,7 +48,7 @@ const StatsPage = () => {
         </p>
       </StatsHeader>
 
-      {!context.currentData && <Loader />}
+      {context && !context.currentData && <Loader />}
       {context && context.currentData && (
         <StatsContainer>
           <StatStyles>
