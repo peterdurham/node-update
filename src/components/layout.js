@@ -2,9 +2,9 @@ import React from "react"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import Nav from "./nav"
-import Footer from './footer'
-import {statsContext} from '../components/provider'
-import './prism.css'
+import Footer from "./footer"
+import { statsContext } from "../components/provider"
+import "./prism.css"
 
 const theme = {
   orange: "#f7931a",
@@ -180,19 +180,21 @@ const AppStyles = styled.div`
 `
 
 function Layout({ children }) {
-  const {currentData} = React.useContext(statsContext)
-
+  const context = React.useContext(statsContext)
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <AppStyles>
-        <div className="app-container">
-          <Nav currentData={currentData}/>
-          <div>{children}</div>
-        </div>
-      <Footer />
-      </AppStyles>
+
+      {context.currentData && (
+        <AppStyles>
+          <div className="app-container">
+            <Nav currentData={context.currentData} />
+            <div>{children}</div>
+          </div>
+          <Footer />
+        </AppStyles>
+      )}
     </ThemeProvider>
   )
 }

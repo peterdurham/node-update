@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import axios from 'axios'
+import React, { useState } from "react"
+import axios from "axios"
 
-export const statsContext = React.createContext();
+export const statsContext = React.createContext()
 
 const Provider = props => {
   const [currentData, setCurrentData] = useState(null)
@@ -24,18 +24,15 @@ const Provider = props => {
     fetchCurrentData()
   }, [error])
 
-    return (
-      <statsContext.Provider value={{
+  return (
+    <statsContext.Provider
+      value={{
         currentData,
-      }}>
+      }}
+    >
       {props.children}
     </statsContext.Provider>
   )
+}
 
-};
-
-export default ({ element }) => (
-  <Provider>
-    {element}
-  </Provider>
-);
+export default ({ element }) => <Provider>{element}</Provider>
