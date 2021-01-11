@@ -7,8 +7,9 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+
 
 const SEO = ({ pageType, description, datePublished, dateModified, title , canonical, twitterImage, tags }) => {
   const { site, logo } = useStaticQuery(
@@ -231,6 +232,7 @@ const SEO = ({ pageType, description, datePublished, dateModified, title , canon
     dateModified,
   })
 
+ 
   return (
     <Helmet
     htmlAttributes={{
