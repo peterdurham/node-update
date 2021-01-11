@@ -75,7 +75,7 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#F7931A`,
         display: `minimal-ui`,
-        icon: `src/images/favicon-16x16.png`,
+        icon: `src/images/bitcoin-logo.png`,
       },
     },
     {
