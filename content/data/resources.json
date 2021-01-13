@@ -3,14 +3,14 @@
     "type": "reference",
     "name": "Bitcoin Configuration Options",
     "description": "",
-    "link": "http://localhost:8000/bitcoin-config",
+    "link": "http://www.nodeupdate.com/bitcoin-config",
     "logo": "../assets/site/site-logo.png"
   },
   {
     "type": "reference",
     "name": "Bitcoin JSON RPC Commands",
     "description": "",
-    "link": "http://localhost:8000/rpc-commands",
+    "link": "http://www.nodeupdate.com/rpc-commands",
     "logo": "../assets/site/site-logo.png"
   },
 
