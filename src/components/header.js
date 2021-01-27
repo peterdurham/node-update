@@ -1,5 +1,7 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
+
 import BitcoinLogo from "../../content/assets/site/bitcoin-logo.png"
 
 const Header = () => {
@@ -14,6 +16,10 @@ const Header = () => {
           node. Collect statistics and build Bitcoin applications using the RPC
           interface.
         </p>
+        <div className="links">
+          <Link to="/stats">Stats</Link>
+          <Link to="/charts">Charts</Link>
+        </div>
       </div>
     </HeaderStyles>
   )
@@ -25,6 +31,26 @@ const HeaderStyles = styled.div`
   padding: 84px 0;
   position: relative;
   color: ${props => props.theme.black};
+  & .links {
+    margin-top: 40px;
+  }
+  & a {
+    background: none;
+    border: 2px solid ${props => props.theme.orange};
+    padding: 10px 26px;
+    border-radius: 4px;
+    margin-right: 20px;
+  
+    transition: 0.3s all;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: ${props => props.theme.grey};
+    &:hover {
+      background: ${props => props.theme.orange};
+      color: #fff;
+    }
+  }
 
   @media (max-width: 1296px) {
     width: 900px;
@@ -46,11 +72,11 @@ const HeaderStyles = styled.div`
       left: 650px;
     }
     @media (max-width: 1000px) {
-     width: 128px;
-     height: 128px;
-     top: 20px;
-     left: auto;
-     right: 20px;
+      width: 128px;
+      height: 128px;
+      top: 20px;
+      left: auto;
+      right: 20px;
     }
     @media (max-width: 500px) {
       display: none;
@@ -61,7 +87,7 @@ const HeaderStyles = styled.div`
     @media (max-width: 1296px) {
       width: 55%;
     }
-    @media (max-width: 1000px){
+    @media (max-width: 1000px) {
       width: 100%;
     }
   }

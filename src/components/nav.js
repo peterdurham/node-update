@@ -132,7 +132,7 @@ const NavStyles = styled.header`
   & #stats-nav {
     border-bottom: 1px solid ${props => props.theme.borderLight};
     color: ${props => props.theme.grey};
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     @media (max-width: 800px) {
       order: 2;
