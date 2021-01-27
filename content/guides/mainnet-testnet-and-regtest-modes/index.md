@@ -26,7 +26,7 @@ The mode you haved selected on startup (*mainnet by default*) will determine whi
 ## Mainnet
 **Mainnet** is the *actual bitcoin network*. Running a mainnet node will download every historical bitcoin transaction and allow you to send and receive real bitcoin transactions.  
 <br />
-If you don't have enough space for the entire blockchain, **pruned mode** can reduce your block storage requirements to 577mb or less.  
+If you don't have enough space for the entire blockchain, **pruned mode** can reduce your block storage requirements to at least 577mb (550 MiB) which you can specify in the bitcoin configuration with `prune=550` being the minimum. This will download every block from the start and delete the oldest above that storage amount.
 <br />
 Bitcoin nodes run on mainnet by default, so you will not need to include any additional configuration options.
 
