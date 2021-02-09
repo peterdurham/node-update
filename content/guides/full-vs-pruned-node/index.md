@@ -2,8 +2,8 @@
 title: Full vs Pruned Bitcoin Node
 templateKey: guide-post
 type: node-setup
-date: "2021-01-10T22:12:03.284Z"
-dateModified: "2021-01-10T22:12:03.284Z"
+date: "2021-02-08T16:00:00.000Z"
+dateModified: "2021-02-08T16:00:00.000Z"
 excerpt: Do you have enough storage for a full node? Find out if you'll need to prune your node to save space.
 description: Learn the difference between running a pruned and full bitcoin node. Prune your node to save storage space by deleting older blocks.
 tags:

@@ -2,8 +2,8 @@
 title: How to Setup a Bitcoin Node
 templateKey: guide-post
 type: node-setup
-date: "2021-01-07T22:12:03.284Z"
-dateModified: "2021-01-07T22:12:03.284Z"
+date: "2021-02-02T16:00:00.000Z"
+dateModified: "2021-02-02T16:00:00.000Z"
 excerpt: This is the first step when getting started with Bitcoin. Setup your own node to begin interacting with the network.
 description: Tutorial on how to setup, configure, and run a bitcoin core node. Explains details needed to get started on the bitcoin network.
 tags:

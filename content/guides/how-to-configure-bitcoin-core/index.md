@@ -2,8 +2,8 @@
 title: How to Configure Bitcoin Core
 templateKey: guide-post
 type: node-setup
-date: "2021-01-08T22:12:03.284Z"
-dateModified: "2021-01-08T22:12:03.284Z"
+date: "2021-02-04T16:00:00.000Z"
+dateModified: "2021-02-04T16:00:00.000Z"
 excerpt: There are plenty of configuration options for Bitcoin Core. Find out which ones you might need.
 description: Learn how to configure bitcoin core with the bitcoin.conf file and command line configuration flags.
 tags:

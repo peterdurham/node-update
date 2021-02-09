@@ -2,8 +2,8 @@
 title: Bitcoind vs Bitcoin-qt
 templateKey: guide-post
 type: node-setup
-date: "2021-01-11T22:12:03.284Z"
-dateModified: "2021-01-11T22:12:03.284Z"
+date: "2021-02-09T16:00:00.000Z"
+dateModified: "2021-02-09T16:00:00.000Z"
 excerpt: Do you want to run your node as a command line daemon or a wallet GUI?
 description: Learn the difference between running bitcoin core using bitcoind and bitcoin-qt. Startup a daemon or wallet GUI.
 tags:
