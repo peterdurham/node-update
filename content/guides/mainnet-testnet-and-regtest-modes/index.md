@@ -2,8 +2,8 @@
 title: Mainnet, Testnet, and Regtest Bitcoin Modes
 templateKey: guide-post
 type: node-setup
-date: 2021-01-09
-dateModified: 2021-01-09
+date: "2021-01-09T22:12:03.284Z"
+dateModified: "2021-01-09T22:12:03.284Z"
 excerpt: "Bitcoin Core has three network types: Mainnet, Testnet, and Regtest."
 description: Learn the difference between bitcoin mainnet, testnet, and regtest networks. Find out which network type you want to run a node on.
 tags:

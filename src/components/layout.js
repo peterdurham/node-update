@@ -166,8 +166,6 @@ tbody tr:nth-child(even) {
     white-space: normal;
   }
 }
-
-
 `
 
 const AppStyles = styled.div`
@@ -224,7 +222,9 @@ function Layout({ children }) {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
 
-      {currentData && (
+      {/* {currentData && (
+          )} */}
+      
         <AppStyles>
           <div className="app-container">
             <Nav currentData={currentData} />
@@ -232,7 +232,6 @@ function Layout({ children }) {
           </div>
           <Footer />
         </AppStyles>
-      )}
     </ThemeProvider>
   )
 }

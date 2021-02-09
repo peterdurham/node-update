@@ -7,7 +7,7 @@ import BitcoinLogo from "../../content/assets/site/bitcoin-logo.png"
 const Header = () => {
   return (
     <HeaderStyles>
-      <img src={BitcoinLogo} alt="bitcoin logo" id="bitcoin-logo" />
+      {/* <img src={BitcoinLogo} alt="bitcoin logo" id="bitcoin-logo" /> */}
       <div className="text">
         <h1 className="title light-title">Bitcoin Core</h1>
         <h1 className="title">Node Setup and Building Apps</h1>
@@ -36,11 +36,11 @@ const HeaderStyles = styled.div`
   }
   & a {
     background: none;
-    border: 2px solid ${props => props.theme.orange};
+    border: 1px solid ${props => props.theme.black};
     padding: 10px 26px;
     border-radius: 4px;
     margin-right: 20px;
-  
+    font-weight: 700;
     transition: 0.3s all;
     cursor: pointer;
     text-transform: uppercase;
@@ -48,6 +48,7 @@ const HeaderStyles = styled.div`
     color: ${props => props.theme.grey};
     &:hover {
       background: ${props => props.theme.orange};
+      border: 2px solid ${props => props.theme.orange};
       color: #fff;
     }
   }
