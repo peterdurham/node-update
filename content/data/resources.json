@@ -219,13 +219,6 @@
   },
   {
     "type": "buy",
-    "name": "Gemini",
-    "link": "https://www.gemini.com/",
-    "description": "",
-    "logo": "../assets/resources/buy/gemini.jpg"
-  },
-  {
-    "type": "buy",
     "name": "Kraken",
     "link": "https://www.kraken.com/",
     "description": "",
