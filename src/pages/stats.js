@@ -34,10 +34,10 @@ const StatsPage = () => {
         const currentResponse = await axios.get(
           "https://node.nodeupdate.com/nodeinfo/currentdata"
         )
-        setCurrentData(currentResponse.data[0])
+        setCurrentData(currentResponse.data[1])
 
         const cachedData = {
-          currentData: currentResponse.data[0],
+          currentData: currentResponse.data[1],
           time: new Date().getTime(),
         }
 
