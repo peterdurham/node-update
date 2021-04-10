@@ -73,7 +73,7 @@ const MainNav = ({ menuOpen, setMenuOpen }) => {
           <div id="main-nav-logo-text">Node Update</div>
         </Link>
         <nav id="main-nav-links">
-          <Link to="/guides">Guides</Link>
+   
           <Link to="/stats">Stats</Link>
           <Link to="/charts">Charts</Link>
           <Link to="/resources">Resources</Link>
